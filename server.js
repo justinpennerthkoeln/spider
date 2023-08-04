@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 var bodyParser = require('body-parser');
 const galery = require('./config/galery.json');
+var fileupload = require("express-fileupload");
 
 var session = require('express-session');
 
@@ -13,12 +14,13 @@ app.set('trust proxy', 1);
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
 app.use(express.static(path.join(__dirname, "javascript")));
 app.use(express.static(__dirname + '/public'));
+app.use(fileupload());
 
 const userController = require("./controllers/userController");
 const galeryController = require("./controllers/galeryController");
 
-app.get("/", (req, res) => {res.send("Hello World!")})
-    .get("/index", (req, res) => {res.send("Hello World!")});
+app.get("/", (req, res) => {res.redirect("/galery")});
+app.get("/index", (req, res) => {res.redirect("/galery")});
 
 app.route("/login")
     .get(userController.login)
@@ -30,8 +32,16 @@ app.route("/logout")
 app.route("/galery")
     .get(galeryController.galery);
 
-// portfolio
-// anschreiben
+// app.route("/galery/:id")
+//     .get(galeryController.galeryDetail);
+
+// app.route("/contact")
+//     .get(galeryController.contact);
+
+app.route("/new-image")
+    .get(galeryController.newImage)
+    .post(urlencodedParser, galeryController.newImageEval);
+
 // kontakt
 // aufträge
 // impressum

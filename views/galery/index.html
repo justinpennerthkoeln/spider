@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spider - galery</title>
     <style>
+        body {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(33, 8, 52, 80);;
+            background-color: rgba(33, 8, 52, 80);
             color: white;
             padding: 0 1rem;
         }
@@ -33,12 +47,63 @@
             text-decoration: underline;
         }
 
-        h1 {
-            color: rgba(33, 8, 52, 80);;
+        form {
+            display: inline-flex;
+            flex-direction: column;
+            width: 15rem;
+            margin-top: 6rem;
         }
 
-        .item img{
-            width: 10em;
+        form input { 
+            margin-top: 10px;
+            min-height: 1.5rem;
+            border: none;
+            border-bottom: solid 0.1rem rgba(33, 8, 52, 80);;
+        }
+
+        form button {
+            margin-top: 15px;
+            min-height: 2rem;
+            border:none;
+            background-color: rgba(33, 8, 52, 80);
+            color: #FFF;
+        }
+
+        form input:focus {
+            outline:none;
+        }
+
+        h1 {
+            color: rgba(33, 8, 52, 80);
+            margin-top: 2rem;
+        }
+
+        /* Imgaes
+        ********************************************/
+
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 1rem;
+            margin: 1rem;
+        }
+
+        #gallery .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fff;
+        }
+
+        #gallery .item img {
+            width: 100%;
+            height: auto;
+        }
+
+        #gallery .item figcaption {
+            text-align: left;
+            font-size: 0.8rem;
+            color: #666;
+            margin: 0.5rem 0;
         }
     </style>
 </head>
