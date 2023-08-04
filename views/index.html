@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider - galery</title>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #C3A4F0;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #C3A4F0;
+        }
+
+        .item img{
+            width: 10em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/galery">Galery</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <h1>Spider - Galery</h1>
+            <div id="gallery">
+                
+            </div>
+        </div>
+    </main>
+</body>
+<script type="importmap">
+    {
+      "imports": {
+        "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+      }
+    }
+</script>
+<script type="module">
+    import { io } from "socket.io-client";
+
+    const socket = io("ws://localhost:3000");
+    
+
+    socket.on("connect", () => {
+        var gallery = [];
+        console.log("connected");
+
+        socket.on("disconnect", () => {
+            console.log("disconected");
+        });
+
+        socket.emit("getGallery");
+
+        socket.on("gotGallery", async(data) => {
+                gallery = await data;
+                gallery.forEach(element => {
+                var item = document.createElement("div");
+                var figure = document.createElement("figure");
+                var figcaption = document.createElement("figcaption");
+                var img = document.createElement("img");
+
+                img.src = element.link;
+                img.alt = element.caption;
+                figcaption.innerHTML = element.caption;
+                item.classList.add('item')
+
+                figure.appendChild(img);
+                figure.appendChild(figcaption);
+                item.appendChild(figure);
+                document.getElementById("gallery").appendChild(item);
+            });
+        });
+    });
+</script>
+</html>
