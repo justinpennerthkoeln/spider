@@ -35,8 +35,9 @@ app.route("/galery")
 // app.route("/galery/:id")
 //     .get(galeryController.galeryDetail);
 
-// app.route("/contact")
-//     .get(galeryController.contact);
+app.route("/contact")
+    .get(galeryController.contact)
+    .post(urlencodedParser, galeryController.contactEval);
 
 app.route("/new-image")
     .get(galeryController.newImage)

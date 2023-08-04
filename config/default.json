@@ -2,5 +2,26 @@
     "user" : {
         "username": "spider",
         "password": "secret"
+    },
+
+    "transportConfig" : {
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "pitsprak@gmail.com",
+            "pass": "oqscxzykofzwylaf"
+        }
+    },
+
+    "mailConfig" : {
+        "from": "<pitspark@gmail.com>",
+        "subject": "Chat-Request",
+        "to":"justin_dan.penner@smail.th-koeln.de",
+        "text": "your Login-token is: 123456"
+    },
+
+    "email" : {
+        "to": "Justinpenner2806@gmail.com"
     }
 }
