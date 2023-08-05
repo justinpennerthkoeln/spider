@@ -3,7 +3,9 @@ const app = express();
 const path = require('path');
 const galery = require('../config/galery.json');
 var mailer = require('../javascript/mailer.js');
+var imageModel = require('../models/imageModel.js');
 var fs = require('fs');
+const e = require('express');
 
 exports.galery = async function (req, res) {
     res.status(200).sendFile('index.html', {
@@ -24,8 +26,8 @@ exports.newImage = async function (req, res) {
 
 exports.newImageEval = async function (req, res) {
     try {
-        galery.push({"caption": req.body.caption, "link": req.body.url});
-        fs.writeFileSync('./config/galery.json', JSON.stringify(galery));
+        console.log(req.body)
+        imageModel.addImage(req.body.caption, req.body.url);
         res.redirect('/new-image?success=image_added');
     } catch (err) {
         console.log(err);
@@ -51,5 +53,17 @@ exports.contactEval = async function (req, res) {
     } catch {
         console.log(err);
         res.redirect('/contact?error=contact_not_sent');
+    }
+};
+
+
+exports.galeryDetail = async function (req, res) {
+    try {
+        res.status(200).sendFile('detail.html', {
+            root: path.join(__dirname, '../views/galery'),
+        });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/galery?error=galery_not_loaded');
     }
 };

@@ -236,8 +236,8 @@
 <script type="module">
     import { io } from "socket.io-client";
 
-    const socket = io("https://spider-ff0e.onrender.com");
-    // const socket = io("http://localhost:3000");
+    // const socket = io("https://spider-ff0e.onrender.com");
+    const socket = io("http://localhost:3000");
     
 
     socket.on("connect", () => {
@@ -259,7 +259,7 @@
                 var img = document.createElement("img");
                 var a = document.createElement("a");
 
-                img.src = element.link;
+                img.src = element.url;
                 img.alt = element.caption;
                 figcaption.innerHTML = element.caption;
                 a.href = "/galery/" + element.id;

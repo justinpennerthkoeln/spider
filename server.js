@@ -2,8 +2,8 @@ const http = require("http");
 const express = require("express");
 const path = require("path");
 var bodyParser = require('body-parser');
-const galery = require('./config/galery.json');
 var fileupload = require("express-fileupload");
+var imageModel = require('./models/imageModel.js');
 
 var session = require('express-session');
 
@@ -32,8 +32,8 @@ app.route("/logout")
 app.route("/galery")
     .get(galeryController.galery);
 
-// app.route("/galery/:id")
-//     .get(galeryController.galeryDetail);
+app.route("/galery/:id")
+    .get(galeryController.galeryDetail);
 
 app.route("/contact")
     .get(galeryController.contact)
@@ -54,9 +54,22 @@ io.on("connection", function(socket) {
         console.log("Disconnected from client.");
     });
 
-    socket.on("getGallery", function() {
-        console.log("Client requested gallery.");
-        socket.emit("gotGallery", galery);
+    socket.on("getGallery", async function() {
+        galery = await imageModel.getAllImages();
+        if(galery.rowCount > 0) {
+            socket.emit("gotGallery", galery.rows);
+        } else {
+            socket.emit("gotGallery", []);
+        }
+    });
+
+    socket.on("getDetail", async function(id) {
+        detail = await imageModel.getImage(id);
+        if(detail.rowCount > 0) {
+            socket.emit("gotDetail", detail.rows[0]);
+        } else {
+            socket.emit("gotDetail", {});
+        }
     });
 
 });
