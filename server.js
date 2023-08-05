@@ -43,10 +43,6 @@ app.route("/new-image")
     .get(galeryController.newImage)
     .post(urlencodedParser, galeryController.newImageEval);
 
-// kontakt
-// aufträge
-// impressum
-
 const socketio = require("socket.io");
 
 const io = new socketio.Server(server);
