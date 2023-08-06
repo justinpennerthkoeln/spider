@@ -16,7 +16,7 @@ exports.login = async function (req, res) {
 exports.loginEval = async function (req, res) {
     if(req.body.username == defaultConfig.user.username && req.body.password == defaultConfig.user.password) {
         req.session.user = {username: defaultConfig.user.username, password: defaultConfig.user.password};
-        res.status(200).redirect('/index?success=login');
+        res.status(200).redirect('/settings?success=login');
     } else {
         res.status(400).redirect('/login?error=wrong_credentials');
     }

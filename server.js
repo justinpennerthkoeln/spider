@@ -49,7 +49,6 @@ app.route("/new-image")
     .post(urlencodedParser, galeryController.newImageEval);
 
 
-// Settings routes
 // app.route("/home")
 //     .get(userController.home)
 //     .post(urlencodedParser, userController.homeEval);
