@@ -12,7 +12,7 @@ const server = http.createServer(app);
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.set('trust proxy', 1);
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 600000 }}));
 
 app.use(express.static(path.join(__dirname, "javascript")));
 app.use(express.static(__dirname + '/public'));
