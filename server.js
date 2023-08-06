@@ -10,11 +10,16 @@ var session = require('express-session');
 const app = express();
 const server = http.createServer(app);
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 app.set('trust proxy', 1);
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+
 app.use(express.static(path.join(__dirname, "javascript")));
 app.use(express.static(__dirname + '/public'));
 app.use(fileupload());
+app.use(express.static('public'));
+
+app.set("view engine", "ejs");
 
 const userController = require("./controllers/userController");
 const galeryController = require("./controllers/galeryController");
@@ -35,13 +40,20 @@ app.route("/galery")
 app.route("/galery/:id")
     .get(galeryController.galeryDetail);
 
-app.route("/contact")
-    .get(galeryController.contact)
-    .post(urlencodedParser, galeryController.contactEval);
-
 app.route("/new-image")
     .get(galeryController.newImage)
     .post(urlencodedParser, galeryController.newImageEval);
+
+// app.route("/home")
+//     .get(userController.home)
+//     .post(urlencodedParser, userController.homeEval);
+
+// app.route("/price-list")
+//     .get(userController.priceList)
+//     .post(urlencodedParser, userController.priceListEval);
+
+app.route("/settings")
+    .get(userController.settings);
 
 const socketio = require("socket.io");
 
@@ -52,15 +64,6 @@ io.on("connection", function(socket) {
 
     socket.on("disconnect", function(socket) {
         console.log("Disconnected from client.");
-    });
-
-    socket.on("getGallery", async function() {
-        galery = await imageModel.getAllImages();
-        if(galery.rowCount > 0) {
-            socket.emit("gotGallery", galery.rows);
-        } else {
-            socket.emit("gotGallery", []);
-        }
     });
 
     socket.on("getDetail", async function(id) {

@@ -48,11 +48,14 @@
             text-decoration: underline;
         }
 
+        /* form
+        **********************************/
+
         form {
             display: inline-flex;
             flex-direction: column;
             width: 15rem;
-            margin-top: 10rem;
+            margin-top: 4rem;
         }
 
         form input { 
@@ -98,16 +101,40 @@
             margin: 0;
             padding: 0;
         }
+
+        /* Banner
+        ******************************************************************/
+
+        #banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        #banner img {
+            max-width: 80%;
+            width: 90rem;
+            height: 10rem;
+            margin-top: -1rem;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
             <ul>
+                <li><a href="/home">Home</a></li>
                 <li><a href="/galery">Galery</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/price-list">Price list</a></li>
             </ul>
         </nav>
+        <div id="banner">
+            <figure>
+                <img src="../../images/me_closed_2.png" alt="Banner">
+            </figure>
+        </div>
     </header>
     <h1>LOGIN</h1>
 

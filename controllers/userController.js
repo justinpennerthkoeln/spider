@@ -26,3 +26,13 @@ exports.logout = async function (req, res) {
     req.session.destroy();
     res.status(200).redirect('/login?success=logged_out');
 };
+
+exports.settings = async function (req, res) {
+    if(req.session.user != undefined) {
+        res.status(200).sendFile('settings.html', {
+            root: path.join(__dirname, '../views/user'),
+        });
+    } else {
+        res.redirect('/login?error=not_logged_in');
+    }
+};
