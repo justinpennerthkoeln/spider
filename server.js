@@ -24,6 +24,7 @@ app.set("view engine", "ejs");
 const userController = require("./controllers/userController");
 const galeryController = require("./controllers/galeryController");
 
+// User routes
 app.get("/", (req, res) => {res.redirect("/galery")});
 app.get("/index", (req, res) => {res.redirect("/galery")});
 
@@ -34,6 +35,9 @@ app.route("/login")
 app.route("/logout")
     .get(userController.logout);
 
+    
+
+// Image routes
 app.route("/galery")
     .get(galeryController.galery);
 
@@ -44,6 +48,8 @@ app.route("/new-image")
     .get(galeryController.newImage)
     .post(urlencodedParser, galeryController.newImageEval);
 
+
+// Settings routes
 // app.route("/home")
 //     .get(userController.home)
 //     .post(urlencodedParser, userController.homeEval);
@@ -54,6 +60,8 @@ app.route("/new-image")
 
 app.route("/settings")
     .get(userController.settings);
+
+
 
 const socketio = require("socket.io");
 

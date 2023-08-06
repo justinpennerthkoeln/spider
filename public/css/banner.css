@@ -1,0 +1,14 @@
+#banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0 1rem;
+}
+
+#banner img {
+    max-width: 80%;
+    width: 90rem;
+    height: 10rem;
+    margin-top: -1rem;
+}
