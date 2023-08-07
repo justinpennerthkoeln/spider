@@ -50,12 +50,12 @@ app.route("/new-image")
 
 
 // app.route("/home")
-//     .get(userController.home)
-//     .post(urlencodedParser, userController.homeEval);
+//    .get(userController.home)
+//    .post(urlencodedParser, userController.homeEval);
 
-// app.route("/price-list")
-//     .get(userController.priceList)
-//     .post(urlencodedParser, userController.priceListEval);
+app.route("/price-list")
+    .get(userController.priceList)
+    .post(urlencodedParser, userController.priceListEval);
 
 app.route("/settings")
     .get(userController.settings);

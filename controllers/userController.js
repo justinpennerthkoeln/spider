@@ -36,3 +36,13 @@ exports.settings = async function (req, res) {
         res.redirect('/login?error=not_logged_in');
     }
 };
+
+exports.priceList = async function (req, res) {
+    res.status(200).sendFile('priceList.html', {
+        root: path.join(__dirname, '../views/user'),
+    });
+};
+
+exports.priceListEval = async function (req, res) {
+    res.redirect("price-list");
+};
