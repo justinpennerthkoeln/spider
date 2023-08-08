@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" languague="javascript" src="./errorHandlerHtml.js"></script>
     <link rel="stylesheet" href="/css/navigation.css">
     <link rel="stylesheet" href="/css/error.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/banner.css">
-    <title>Spider - Price List</title>
+    <title>Document</title>
     <style>
         body {
             text-align: center;
+        }
+
+        h1 {
+            color: rgba(33, 8, 52, 80);
+            margin-top: 2rem;
+        }
+
+        #abt_me_text {
+            margin: 3rem auto;
+            max-width: 30rem;
+            width: 30rem;
         }
     </style>
 </head>
@@ -30,13 +40,10 @@
             </figure>
         </div>
     </header>
-    <h1>PRICE LIST</h1>
-
-    <div class="example">
-        <img src="https://www.americanexpress.com/de-de/amexcited/media/webp/de-de/amexcited/media/cache/article_intro_hero/cms/2022/01/Schwarz-Weiss-Fotografie-Titelbild-scaled.webp?749573" alt="alt">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores minima voluptatibus sequi eos itaque voluptatum ducimus mollitia eaque molestiae, accusamus iure numquam voluptatem, ipsum aspernatur. Repellendus ad similique molestiae?</p>
+    <h1>ABOUT ME</h1>
+    <div id="abt_me_text">
+        <p><%= abtMeText %></p>
     </div>
-
     <footer>
         <div>
             <p>&copy Pr1v4cy</p>
