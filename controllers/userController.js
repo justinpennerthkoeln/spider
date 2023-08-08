@@ -7,9 +7,7 @@ const bannerModel = require('../models/bannerModel.js');
 const e = require('express');
 
 exports.login = async function (req, res) {
-    console.log();
     banner = await bannerModel.getBanner();
-    console.log(banner.rows[0].url);
     if(req.session.user != undefined) {
         res.status(200).redirect('/index?success=login');
     } else {
