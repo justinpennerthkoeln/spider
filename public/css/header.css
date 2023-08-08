@@ -1,0 +1,9 @@
+h1 {
+    color: #FFF;
+    border: #FFF 1px solid;
+    border-width: fit-content;
+    max-width: 40%;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}   
