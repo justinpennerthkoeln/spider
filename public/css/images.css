@@ -23,6 +23,7 @@
 }
 
 #gallery .item figcaption{
+    overflow: hidden;
     position: absolute;
     bottom: 0;
     left: 0;

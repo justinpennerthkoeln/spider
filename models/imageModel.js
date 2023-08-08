@@ -45,3 +45,15 @@ exports.addImage = async function (caption, link) {
         return false;
     }
 };
+
+exports.deleteImage = async function (id) {
+    try {
+        const query ='DELETE FROM images WHERE id = $1';
+        const values = [id];
+        await pool.query(query, values);
+        return true;
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+};

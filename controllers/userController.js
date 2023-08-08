@@ -2,14 +2,17 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const defaultConfig = require('../config/default.json');
+const abtMeModel = require('../models/abtMeModel.js');
+const bannerModel = require('../models/bannerModel.js');
 
 exports.login = async function (req, res) {
+    banner = await bannerModel.getBanner("open");
+    console.log(banner.rows[0].url);
     if(req.session.user != undefined) {
+        res.render('galery/index.ejs', {banner: await banner.rows[0].url})
         res.status(200).redirect('/index?success=login');
     } else {
-        res.status(200).sendFile('login.html', {
-            root: path.join(__dirname, '../views/user'),
-        });
+        res.render('user/login.ejs', {banner: await banner.rows[0].url});
     }
 }
 
@@ -28,11 +31,46 @@ exports.logout = async function (req, res) {
 };
 
 exports.settings = async function (req, res) {
-    if(req.session.user != undefined) {
-        res.status(200).sendFile('settings.html', {
-            root: path.join(__dirname, '../views/user'),
-        });
-    } else {
-        res.redirect('/login?error=not_logged_in');
+    banner = await bannerModel.getBanner("open");
+    try {
+        if(req.session.user != undefined) {
+            var abtMeText = await abtMeModel.getAbtMeText();
+            res.render('user/settings.ejs', {banner: banner.rows[0]});
+        } else {
+            res.redirect('/login?error=not_logged_in');
+        }
+    } catch(err) {
+        console.log(err);
+        res.redirect('/login?error=something_went_wrong');
+    }
+};
+
+exports.priceList = async function (req, res) {
+    banner = await bannerModel.getBanner("open");
+    res.render('user/priceList.ejs', {banner: banner.rows[0]});
+};
+
+exports.priceListEval = async function (req, res) {
+    res.redirect("price-list");
+};
+
+exports.home = async function (req, res) {
+    try {
+        banner = await bannerModel.getBanner("open");
+        var abtMeText = await abtMeModel.getAbtMeText();
+        res.render('user/home.ejs', {abtMeText: await abtMeText.rows[0].abt_me_text, banner: banner.rows[0]});
+    } catch(err) {
+        console.log(err);
+        res.redirect('/galery');
+    }
+};
+
+exports.updateText = async function (req, res) {
+    try {
+        await abtMeModel.postAbtMeText(req.body.text);
+        res.redirect('/settings?success=abt_me_text_updated');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/settings?error=abt_me_text_not_updated');
     }
 };

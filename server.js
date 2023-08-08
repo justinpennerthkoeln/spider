@@ -48,17 +48,23 @@ app.route("/new-image")
     .get(galeryController.newImage)
     .post(urlencodedParser, galeryController.newImageEval);
 
+app.route("/delete-image")
+    .post(urlencodedParser, galeryController.deleteImage);
 
-// app.route("/home")
-//     .get(userController.home)
-//     .post(urlencodedParser, userController.homeEval);
 
-// app.route("/price-list")
-//     .get(userController.priceList)
-//     .post(urlencodedParser, userController.priceListEval);
+// Setting routes
+app.route("/home")
+   .get(userController.home);
+//    .post(urlencodedParser, userController.homeEval);
+
+app.route("/price-list")
+    .get(userController.priceList)
+    .post(urlencodedParser, userController.priceListEval);
 
 app.route("/settings")
     .get(userController.settings);
+
+app.post("/update-text", urlencodedParser, userController.updateText);
 
 
 
