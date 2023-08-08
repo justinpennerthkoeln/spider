@@ -4,12 +4,13 @@ const path = require('path');
 const defaultConfig = require('../config/default.json');
 const abtMeModel = require('../models/abtMeModel.js');
 const bannerModel = require('../models/bannerModel.js');
+const e = require('express');
 
 exports.login = async function (req, res) {
-    banner = await bannerModel.getBanner("open");
+    console.log();
+    banner = await bannerModel.getBanner();
     console.log(banner.rows[0].url);
     if(req.session.user != undefined) {
-        res.render('galery/index.ejs', {banner: await banner.rows[0].url})
         res.status(200).redirect('/index?success=login');
     } else {
         res.render('user/login.ejs', {banner: await banner.rows[0].url});
@@ -31,11 +32,11 @@ exports.logout = async function (req, res) {
 };
 
 exports.settings = async function (req, res) {
-    banner = await bannerModel.getBanner("open");
     try {
         if(req.session.user != undefined) {
             var abtMeText = await abtMeModel.getAbtMeText();
-            res.render('user/settings.ejs', {banner: banner.rows[0]});
+            var banner = await bannerModel.getBanner();
+            res.render('user/settings.ejs', {banner: await banner.rows[0].url});
         } else {
             res.redirect('/login?error=not_logged_in');
         }
@@ -46,8 +47,8 @@ exports.settings = async function (req, res) {
 };
 
 exports.priceList = async function (req, res) {
-    banner = await bannerModel.getBanner("open");
-    res.render('user/priceList.ejs', {banner: banner.rows[0]});
+    banner = await bannerModel.getBanner();
+    res.render('user/priceList.ejs', {banner: await banner.rows[0].url});
 };
 
 exports.priceListEval = async function (req, res) {
@@ -56,9 +57,9 @@ exports.priceListEval = async function (req, res) {
 
 exports.home = async function (req, res) {
     try {
-        banner = await bannerModel.getBanner("open");
+        banner = await bannerModel.getBanner();
         var abtMeText = await abtMeModel.getAbtMeText();
-        res.render('user/home.ejs', {abtMeText: await abtMeText.rows[0].abt_me_text, banner: banner.rows[0]});
+        res.render('user/home.ejs', {abtMeText: await abtMeText.rows[0].abt_me_text, banner: await banner.rows[0].url});
     } catch(err) {
         console.log(err);
         res.redirect('/galery');
@@ -72,5 +73,15 @@ exports.updateText = async function (req, res) {
     } catch (err) {
         console.log(err);
         res.redirect('/settings?error=abt_me_text_not_updated');
+    }
+};
+
+exports.switchBanner = async function (req, res) {
+    try {
+        await bannerModel.setBanner();
+        res.redirect('/settings?success=banner_switched');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/settings?error=banner_not_switched');
     }
 };

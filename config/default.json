@@ -23,5 +23,9 @@
 
     "email" : {
         "to": "Justinpenner2806@gmail.com"
+    },
+
+    "banner_settings" : {
+        "commission_status": "closed"
     }
 }

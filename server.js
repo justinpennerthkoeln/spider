@@ -55,7 +55,6 @@ app.route("/delete-image")
 // Setting routes
 app.route("/home")
    .get(userController.home);
-//    .post(urlencodedParser, userController.homeEval);
 
 app.route("/price-list")
     .get(userController.priceList)
@@ -65,6 +64,8 @@ app.route("/settings")
     .get(userController.settings);
 
 app.post("/update-text", urlencodedParser, userController.updateText);
+
+app.post("/switch-banner", urlencodedParser, userController.switchBanner);
 
 
 

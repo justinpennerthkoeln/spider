@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/error.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/banner.css">
+    <link rel="stylesheet" href="/css/switch.css">
     <title>Document</title>
     <style>
         body {
@@ -30,6 +31,19 @@
             margin-top: -10rem;
         }
 
+        h3 {
+            color: rgba(33, 8, 52, 80);
+        }
+
+        hr {
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+            width: 10%;
+            background-color: rgba(33, 8, 52, 80);
+            height: 0.1rem;
+            border: none;
+        }
+
     </style>
 </head>
 <body>
@@ -43,26 +57,35 @@
         </nav>
         <div id="banner">
             <figure>
-                <img src="../../images/me_open_2.png" alt="Banner">
+                <img src="<%= banner %>" alt="Banner">
             </figure>
         </div>
     </header>
         <h1>Settings</h1>
         <div id="error-msg" class="hidden"><p></p></div>
         <div class="settings">
+
+            <h3>About Me Text</h3>
+            <hr>
             <form action="/update-text" method="post">
                 <textarea name="text" cols="30" rows="4" placeholder="About Me Text" required></textarea>
                 <button type="submit">Update About Me Text</button>
             </form>
             <br>
+
+            <h3>Galery Images</h3>
+            <hr>
             <form action="/new-image" method="post">
                 <input type="text" name="url" placeholder="URL" required>
                 <input type="text" name="caption" placeholder="Caption" required>
                 <button>Upload New Image</button>
             </form>
             <br>
-            <form action="/update-banner">
-                
+
+            <h3>Banner</h3>
+            <hr>
+            <form action="/switch-banner" method="post">
+                <button>Close / Open Commissions</button>
             </form>
         </div>
     <footer>
