@@ -67,6 +67,8 @@ app.post("/update-text", urlencodedParser, userController.updateText);
 
 app.post("/switch-banner", urlencodedParser, userController.switchBanner);
 
+app.post("/add-price", urlencodedParser, userController.addPrice);
+
 
 
 const socketio = require("socket.io");

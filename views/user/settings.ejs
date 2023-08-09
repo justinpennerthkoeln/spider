@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/banner.css">
     <link rel="stylesheet" href="/css/switch.css">
     <link rel="stylesheet" href="/css/header.css">
-    <title>Document</title>
+    <title>Spider - Settings</title>
     <style>
         body {
             text-align: center;
@@ -29,7 +29,12 @@
         }
 
         h3 {
+            margin-top: 6rem;
             color: #FFF;
+        }
+
+        h1 {
+            margin-bottom: 3rem;
         }
 
         hr {
@@ -94,6 +99,18 @@
             <hr>
             <form action="/switch-banner" method="post">
                 <button>Close / Open Commissions</button>
+            </form>
+
+            <br>
+            <h3>Price List</h3>
+            <form action="/add-price" method="post">
+                <input type="text" name="url" placeholder="url" required>
+                <input type="text" name="tag1" placeholder="tag1" required>
+                <input type="text" name="tag2" placeholder="tag2">
+                <input type="text" name="tag3" placeholder="tag3">
+                <input type="text" name="tag4" placeholder="tag4">
+                <input type="text" name="tag5" placeholder="tag5">
+                <button>Add price</button>
             </form>
         </div>
     <footer>

@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const defaultConfig = require('../config/default.json');
 const abtMeModel = require('../models/abtMeModel.js');
+const pricesModel = require('../models/pricesModel.js');
 const bannerModel = require('../models/bannerModel.js');
 const e = require('express');
 
@@ -46,7 +47,8 @@ exports.settings = async function (req, res) {
 
 exports.priceList = async function (req, res) {
     banner = await bannerModel.getBanner();
-    res.render('user/priceList.ejs', {banner: await banner.rows[0].url});
+    prices = await pricesModel.getAllPrices();
+    res.render('user/priceList.ejs', {banner: await banner.rows[0].url, prices: await prices.rows});
 };
 
 exports.priceListEval = async function (req, res) {
@@ -81,5 +83,16 @@ exports.switchBanner = async function (req, res) {
     } catch (err) {
         console.log(err);
         res.redirect('/settings?error=banner_not_switched');
+    }
+};
+
+exports.addPrice = async function (req, res) {
+    try {
+        console.log(req.body);
+        await pricesModel.addPrice(req.body.url, req.body.tag1, req.body.tag2, req.body.tag3, req.body.tag4, req.body.tag5);
+        res.redirect('/settings?success=price_added');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/settings?error=price_not_added');
     }
 };

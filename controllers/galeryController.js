@@ -9,7 +9,6 @@ exports.galery = async function (req, res) {
     try {
         images = await imageModel.getAllImages();
         banner = await bannerModel.getBanner();
-        console.log(banner)
         res.render('galery/index.ejs', {images: await images.rows, isSpider: req.session.user != undefined, banner: await banner.rows[0].url});
     } catch(err) {
         console.log(err);

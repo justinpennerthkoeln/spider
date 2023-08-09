@@ -1,11 +1,10 @@
 #gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     width: 900px;
     grid-gap: 0.5rem;
     margin: 0 auto;
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
 }
 
 #gallery .item {
@@ -37,11 +36,10 @@
     #gallery {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
         width: 1200px;
         grid-gap: 0.5rem;
         margin: 0 auto;
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
     }
 }
 
@@ -49,11 +47,10 @@
     #gallery {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
         width: 600px;
         grid-gap: 0.5rem;
         margin: 0 auto;
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
     }
 }
 
@@ -61,11 +58,10 @@
     #gallery {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(1, 1fr);
         width: 300px;
         grid-gap: 0.5rem;
         margin: 0 auto;
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
     }
 }
 
@@ -73,10 +69,9 @@
     #gallery {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(5, 1fr);
         width: 1500px;
         grid-gap: 0.5rem;
         margin: 0 auto;
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
     }
 }
