@@ -26,7 +26,7 @@
             background-color: rgba(33, 8, 52, 80);
             margin: 3rem auto;
             max-width: 40rem;
-            margin-bottom: 7rem;
+            margin-bottom: 6rem;
         }
 
         .example img {
@@ -45,6 +45,14 @@
             justify-content: center;
             align-items: center;
             width: 50%;
+        }
+
+        #prices {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
     </style>
@@ -66,18 +74,20 @@
     </header>
     <h1>PRICE LIST</h1>
 
-    <% for (var i=0; i<prices.length; i++) { %>
-        <div class="example">
-            <img src="<%= prices[i].url %>" alt="alt">
-            <div class="text">
-                    <p><%= prices[i].tag1 %></p>
-                    <p><%= prices[i].tag2 %></p>
-                    <p><%= prices[i].tag3 %></p>
-                    <p><%= prices[i].tag4 %></p>
-                    <p><%= prices[i].tag5 %></p>
+    <div id="prices">
+        <% for (var i=0; i<prices.length; i++) { %>
+            <div class="example">
+                <img src="<%= prices[i].url %>" alt="alt">
+                <div class="text">
+                        <p><%= prices[i].tag1 %></p>
+                        <p><%= prices[i].tag2 %></p>
+                        <p><%= prices[i].tag3 %></p>
+                        <p><%= prices[i].tag4 %></p>
+                        <p><%= prices[i].tag5 %></p>
+                </div>
             </div>
-        </div>
-    <% } %>
+        <% } %>
+    </div>
 
     <footer>
         <div>
