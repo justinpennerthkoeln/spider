@@ -39,6 +39,10 @@
             margin: 0;
             padding: 0;
         }
+
+        .hasButton {
+            margin-left: 8rem;
+        }
         
         .example .text {
             display: flex;
@@ -73,6 +77,8 @@
         p {
             color: #FFF;
         }
+
+
     </style>
 </head>
 <body>
@@ -132,5 +138,12 @@
             </ul>
         </div>
     </footer>
+    <script>
+        var btn = document.querySelector('.material-symbols-outlined')
+        var text = document.querySelector('.text');
+        if(btn != null) {
+            text.classList.add('hasButton');
+        }
+    </script>
 </body>
 </html>
