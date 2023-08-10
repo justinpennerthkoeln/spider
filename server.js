@@ -70,6 +70,8 @@ app.post("/switch-banner", urlencodedParser, userController.switchBanner);
 
 app.post("/add-price", urlencodedParser, userController.addPrice);
 
+app.post("/delete-price", urlencodedParser, userController.deletePrice);
+
 // Payments and prices
 app.route("/payment")
     .get(paymentController.payment);

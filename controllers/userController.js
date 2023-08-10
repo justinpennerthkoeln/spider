@@ -48,7 +48,7 @@ exports.settings = async function (req, res) {
 exports.priceList = async function (req, res) {
     banner = await bannerModel.getBanner();
     prices = await pricesModel.getAllPrices();
-    res.render('user/priceList.ejs', {banner: await banner.rows[0].url, prices: await prices.rows});
+    res.render('user/priceList.ejs', {banner: await banner.rows[0].url, prices: await prices.rows, isSpider: req.session.user != undefined});
 };
 
 exports.priceListEval = async function (req, res) {
@@ -94,5 +94,15 @@ exports.addPrice = async function (req, res) {
     } catch (err) {
         console.log(err);
         res.redirect('/settings?error=price_not_added');
+    }
+};
+
+exports.deletePrice = async function (req, res) {
+    try {
+        await pricesModel.deletePrice(req.query.id);
+        res.redirect('/price-list?success=price_deleted');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/price-list?error=price_not_added');
     }
 };

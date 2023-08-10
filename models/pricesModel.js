@@ -34,3 +34,15 @@ exports.addPrice = async function (url, tag1, tag2, tag3, tag4, tag5) {
         return null;
     }
 };
+
+exports.deletePrice = async function (id) {
+    try {
+        const query = 'DELETE FROM prices WHERE id = $1';
+		const values = [id];
+		await pool.query(query, values);
+        return true;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
