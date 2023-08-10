@@ -23,6 +23,7 @@ app.set("view engine", "ejs");
 
 const userController = require("./controllers/userController");
 const galeryController = require("./controllers/galeryController");
+const paymentController = require("./controllers/paymentController");
 
 // User routes
 app.get("/", (req, res) => {res.redirect("/galery")});
@@ -68,6 +69,10 @@ app.post("/update-text", urlencodedParser, userController.updateText);
 app.post("/switch-banner", urlencodedParser, userController.switchBanner);
 
 app.post("/add-price", urlencodedParser, userController.addPrice);
+
+// Payments and prices
+app.route("/payment")
+    .get(paymentController.payment);
 
 
 

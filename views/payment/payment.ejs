@@ -3,23 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" languague="javascript" src="./errorHandlerHtml.js"></script>
     <link rel="stylesheet" href="/css/navigation.css">
     <link rel="stylesheet" href="/css/error.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/banner.css">
     <link rel="stylesheet" href="/css/header.css">
-    <title>Spider - Login</title>
+    <title>Spider - About Me</title>
     <style>
         body {
             text-align: center;
             background-color: #212529;
         }
 
-        input {
-            background-color: #212529;
+        #abt_me_text {
+            margin: 3rem auto;
+            max-width: 30rem;
+            width: 30rem;
             color: #FFF;
         }
+
+        .payment-types {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment-types img{
+            width: 14rem;
+            height: 7rem;
+        }
+
+        .support-me {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10rem;
+            margin-top: 3rem;
+        }
+
+        .support-me a{
+            color: #FFF;
+            text-decoration: none;
+            padding-bottom: 1rem;
+        }
+
+        
+
     </style>
 </head>
 <body>
@@ -43,16 +72,23 @@
             </ul>
         </nav>
     </header>
-    <h1>LOGIN</h1>
-
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button>Log in</button>
-    </form>
-    <div id="error-msg" class="hidden">
-        <p></p>
+    
+    <div class="payment-types">
+        <h1>PAYMENT TYPES</h1>
+        <a href="https://www.paypal.com">
+            <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_1280.png" alt="paypal">
+        </a>
+        <a href="https://www.patreon.com">
+            <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_1280.png" alt="paypal">
+        </a>
     </div>
+
+    <div class="support-me">
+        <h1>SUPPORT ME</h1>
+        <a href="https://www.patreon.com">Patreon: </a>
+        <a href="https://www.paypal.com">Paypal: </a>
+    </div>
+
     <footer>
         <div>
             <p>&copy Pr1v4cy</p>
