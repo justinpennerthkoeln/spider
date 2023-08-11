@@ -25,6 +25,23 @@
         p {
             color: #FFF;
         }
+    
+        .striked {
+            text-decoration: line-through;
+        }
+
+        .underlined {
+            text-decoration: underline;
+        }
+
+        .cursive {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -64,4 +81,39 @@
         </div>
     </footer>
 </body>
+<script>
+    var abtmeText = document.querySelector('#abt_me_text p').innerHTML;
+    while(abtmeText.includes('[s]')) {
+        var before = abtmeText.split('[s]')[0];
+        var after = abtmeText.split('[s/]')[1];
+        sText = abtmeText.substring(abtmeText.indexOf('[s]') + 4, abtmeText.indexOf('[s/]'));
+        document.querySelector('#abt_me_text p').innerHTML = before + "<span class='striked'>" + sText + "</span>" + after;
+        abtmeText = document.querySelector('#abt_me_text p').innerHTML;
+    }
+
+    while(abtmeText.includes('[u]')) {
+        var before = abtmeText.split('[u]')[0];
+        var after = abtmeText.split('[u/]')[1];
+        sText = abtmeText.substring(abtmeText.indexOf('[u]') + 4, abtmeText.indexOf('[u/]'));
+        document.querySelector('#abt_me_text p').innerHTML = before + "<span class='underlined'>" + sText + "</span>" + after;
+        abtmeText = document.querySelector('#abt_me_text p').innerHTML;
+    }
+
+    while(abtmeText.includes('[i]')) {
+        var before = abtmeText.split('[i]')[0];
+        var after = abtmeText.split('[i/]')[1];
+        sText = abtmeText.substring(abtmeText.indexOf('[i]') + 4, abtmeText.indexOf('[i/]'));
+        document.querySelector('#abt_me_text p').innerHTML = before + "<span class='cursive'>" + sText + "</span>" + after;
+        abtmeText = document.querySelector('#abt_me_text p').innerHTML;
+    }
+
+    while(abtmeText.includes('[b]')) {
+        var before = abtmeText.split('[b]')[0];
+        var after = abtmeText.split('[b/]')[1];
+        sText = abtmeText.substring(abtmeText.indexOf('[b]') + 4, abtmeText.indexOf('[b/]'));
+        document.querySelector('#abt_me_text p').innerHTML = before + "<span class='bold'>" + sText + "</span>" + after;
+        abtmeText = document.querySelector('#abt_me_text p').innerHTML;
+    }
+
+</script>
 </html>
