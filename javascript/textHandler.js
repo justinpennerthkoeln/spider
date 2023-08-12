@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
     var abtmeText = document.querySelector('#abt_me_text p').innerHTML;
-    while(abtmeText.includes('[s]')) {
+    while(abtmeText.includes('[s]') && abtmeText.includes('[s/]')) {
         var before = abtmeText.substring(0, abtmeText.indexOf('[s]'));
         var after = abtmeText.substring(abtmeText.indexOf('[s/]') + 4, abtmeText.length);
         sText = abtmeText.substring(abtmeText.indexOf('[s]') + 4, abtmeText.indexOf('[s/]')-1);
@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         abtmeText = document.querySelector('#abt_me_text p').innerHTML;
     }
 
-    while(abtmeText.includes('[u]')) {
+    while(abtmeText.includes('[u]') && abtmeText.includes('[u/]')) {
         var before = abtmeText.substring(0, abtmeText.indexOf('[u]'));
         var after = abtmeText.substring(abtmeText.indexOf('[u/]') + 4, abtmeText.length);
         sText = abtmeText.substring(abtmeText.indexOf('[u]') + 4, abtmeText.indexOf('[u/]')-1);
@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         abtmeText = document.querySelector('#abt_me_text p').innerHTML;
     }
 
-    while(abtmeText.includes('[i]')) {
+    while(abtmeText.includes('[i]') && abtmeText.includes('[i/]')) {
         var before = abtmeText.substring(0, abtmeText.indexOf('[i]'));
         var after = abtmeText.substring(abtmeText.indexOf('[i/]') + 4, abtmeText.length);
         sText = abtmeText.substring(abtmeText.indexOf('[i]') + 4, abtmeText.indexOf('[i/]')-1);
@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         abtmeText = document.querySelector('#abt_me_text p').innerHTML;
     }
 
-    while(abtmeText.includes('[b]')) {
+    while(abtmeText.includes('[b]') && abtmeText.includes('[b/]')) {
         var before = abtmeText.substring(0, abtmeText.indexOf('[b]'));
         var after = abtmeText.substring(abtmeText.indexOf('[b/]') + 4, abtmeText.length);
         sText = abtmeText.substring(abtmeText.indexOf('[b]') + 4, abtmeText.indexOf('[b/]')-1);
