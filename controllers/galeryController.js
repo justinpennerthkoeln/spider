@@ -5,12 +5,13 @@ var imageModel = require('../models/imageModel.js');
 var fs = require('fs');
 const bannerModel = require('../models/bannerModel.js');
 var defaultConfig = require('../config/default.json');
+const userModel = require('../models/userModel.js');
 
 exports.galery = async function (req, res) {
     try {
         images = await imageModel.getAllImages();
         banner = await bannerModel.getBanner();
-        lastSeen = defaultConfig.lastseen;
+         lastSeen = await userModel.getLastSeen();
         res.render('galery/index.ejs', {images: await images.rows, isSpider: req.session.user != undefined, banner: await banner.rows[0].url, lastSeen: lastSeen});
     } catch(err) {
         console.log(err);
@@ -44,7 +45,7 @@ exports.galeryDetail = async function (req, res) {
     try {
         var image = await imageModel.getImage(req.params.id);
         banner = await bannerModel.getBanner();
-        lastSeen = defaultConfig.lastseen;
+         lastSeen = await userModel.getLastSeen();
         res.render('galery/detail.ejs', {image: await image.rows[0], banner: await banner.rows[0].url, lastSeen: lastSeen});
     } catch (err) {
         console.log(err);

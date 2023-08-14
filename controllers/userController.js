@@ -5,11 +5,11 @@ const defaultConfig = require('../config/default.json');
 const abtMeModel = require('../models/abtMeModel.js');
 const pricesModel = require('../models/pricesModel.js');
 const bannerModel = require('../models/bannerModel.js');
-const e = require('express');
+const userModel = require('../models/userModel.js');
 
 exports.login = async function (req, res) {
     banner = await bannerModel.getBanner();
-    lastSeen = defaultConfig.lastseen;
+    lastSeen = await userModel.getLastSeen();
     if(req.session.user != undefined) {
         res.status(200).redirect('/index?success=login');
     } else {
@@ -18,9 +18,10 @@ exports.login = async function (req, res) {
 }
 
 exports.loginEval = async function (req, res) {
-    if(req.body.username == defaultConfig.user.username && req.body.password == defaultConfig.user.password) {
-        req.session.user = {username: defaultConfig.user.username, password: defaultConfig.user.password};
-        defaultConfig.lastseen = "last seen: " + new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear();
+    var isRight = await userModel.check(req.body.username, req.body.password);
+    if(isRight) {
+        req.session.user = {username: req.body.username, password: req.body.password};
+        userModel.updateLastSeen("last seen: " + new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear());
         res.status(200).redirect('/settings?success=login');
     } else {
         res.status(400).redirect('/login?error=wrong_credentials');
@@ -37,7 +38,7 @@ exports.settings = async function (req, res) {
         if(req.session.user != undefined) {
             var abtMeText = await abtMeModel.getAbtMeText();
             var banner = await bannerModel.getBanner();
-            lastSeen = defaultConfig.lastseen;
+             lastSeen = await userModel.getLastSeen();
             res.render('user/settings.ejs', {banner: await banner.rows[0].url, lastSeen: lastSeen});
         } else {
             res.redirect('/login?error=not_logged_in');
@@ -51,7 +52,7 @@ exports.settings = async function (req, res) {
 exports.priceList = async function (req, res) {
     banner = await bannerModel.getBanner();
     prices = await pricesModel.getAllPrices();
-    lastSeen = defaultConfig.lastseen;
+     lastSeen = await userModel.getLastSeen();
     res.render('user/priceList.ejs', {banner: await banner.rows[0].url, prices: await prices.rows, isSpider: req.session.user != undefined, lastSeen: lastSeen});
 };
 
@@ -63,7 +64,7 @@ exports.home = async function (req, res) {
     try {
         banner = await bannerModel.getBanner();
         var abtMeText = await abtMeModel.getAbtMeText();
-        lastSeen = defaultConfig.lastseen;
+         lastSeen = await userModel.getLastSeen();
         res.render('user/home.ejs', {abtMeText: await abtMeText.rows[0].abt_me_text, banner: await banner.rows[0].url, lastSeen: lastSeen});
     } catch(err) {
         console.log(err);
