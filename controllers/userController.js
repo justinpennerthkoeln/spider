@@ -1,7 +1,3 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const defaultConfig = require('../config/default.json');
 const abtMeModel = require('../models/abtMeModel.js');
 const pricesModel = require('../models/pricesModel.js');
 const bannerModel = require('../models/bannerModel.js');

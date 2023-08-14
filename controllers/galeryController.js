@@ -1,10 +1,6 @@
-const express = require('express');
-const app = express();
 const path = require('path');
 var imageModel = require('../models/imageModel.js');
-var fs = require('fs');
 const bannerModel = require('../models/bannerModel.js');
-var defaultConfig = require('../config/default.json');
 const userModel = require('../models/userModel.js');
 
 exports.galery = async function (req, res) {
